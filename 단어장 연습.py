@@ -1,6 +1,9 @@
 import MySQLdb
 
 
+class Words:
+    pass
+
 class WordsDao:
     pass
 
