@@ -1,6 +1,15 @@
 import MySQLdb
 
 
+class Words:
+    def __init__(self, eng, kor, lev = 1):
+        self.eng = eng
+        self.kor = kor
+        self.lev = lev
+
+
+    pass
+
 class WordsDao:
     pass
 
