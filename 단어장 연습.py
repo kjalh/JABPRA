@@ -1,7 +1,55 @@
-import MySQLdb
+import MySQLdb as sql
 
+
+
+class Words:
+    def __init__(self, eng, kor, lev = 1):
+        self.eng = eng
+        self.kor = kor
+        lev.lev = lev
+    
+
+    @property
+    def eng(self):
+        return self.__eng
+    
+    @eng.setter
+    def eng(self, eng):
+        if not eng:
+            raise ValueError("영어 입력")
+        self.__eng = eng
+
+    @property
+    def kor(self):
+        return self.__kor
+    
+    @kor.setter
+    def kor(self, kor):
+        if not kor:
+            raise ValueError("뜻(한국어) 입력")
+        self.__kor = kor
+
+    @property
+    def lev(self):
+        return self.__lev
+    
+    @lev.setter
+    def lev(self, lev):
+        lev = int(lev)
+        if lev < 1:
+            raise ValueError("lev는 1보다 커야 함 ")
+        self.__lev = lev
+
+
+
+        
 
 class WordsDao:
+    def __init__(self):
+        self.db = None
+
+    def connect(self):
+        self.db = sql.connect(host='localhost', user='apple', password='1111', db='ai', charset='utf8')
     pass
 
 
