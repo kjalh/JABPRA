@@ -50,7 +50,16 @@ class WordsDao:
 
     def connect(self):
         self.db = sql.connect(host='localhost', user='apple', password='1111', db='ai', charset='utf8')
-    pass
+    
+    def disconnect(self):
+        if self.db:
+            self.db.close()
+    
+    def insert(self, word):
+        self.connect()
+        cur = self.db.cursor()
+        sql = "INSERT INTO vova(eng, kor, lev) VALUES (%s, %s, %s)"
+        pass
 
 
 
