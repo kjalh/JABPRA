@@ -1,4 +1,4 @@
-import MySQLdb as sql
+import MySQLdb
 
 
 
@@ -35,7 +35,6 @@ class Words:
     
     @lev.setter
     def lev(self, lev):
-        lev = int(lev)
         if lev < 1:
             raise ValueError("lev는 1보다 커야 함 ")
         self.__lev = lev
@@ -49,7 +48,7 @@ class WordsDao:
         self.db = None
 
     def connect(self):
-        self.db = sql.connect(host='localhost', user='apple', password='1111', db='ai', charset='utf8')
+        self.db = MySQLdb.connect(host='localhost', user='apple', password='1111', db='ai', charset='utf8')
     
     def disconnect(self):
         if self.db:
@@ -58,14 +57,30 @@ class WordsDao:
     def insert(self, word):
         self.connect()
         cur = self.db.cursor()
-        sql = "INSERT INTO vova(eng, kor, lev) VALUES (%s, %s, %s)"
+        sql = "INSERT INTO voca(eng, kor, lev) VALUES (%s, %s, %s)"
+        data = (word.eng, word.kor, word.lev)
+
         pass
 
 
 
 
 class WordsService:
-    pass
+    def __init__(self):
+        self.dao = WordsDao
+
+    def insert_word(self):
+        eng = input("영어 입력: ")
+        kor = input("한글 입력: ")
+        lev = int(input("레벨 입력: "))
+
+        word = Words(eng, kor, lev)
+
+        self.dao.insert(word)
+        print("단어 등록됨")
+
+
+    
 
 
 
@@ -76,7 +91,8 @@ class WordsService:
 
 
 def main():
-
+    def __init__(self):
+        self.service = WordsService
 
     def run(self):
         while True:
